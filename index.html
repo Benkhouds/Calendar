@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>i calendar</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+            integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+            crossorigin="anonymous" />
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+
+
+
+<body>
+
+      <div class="modal-background">
+            <div class="alert-warning">
+                  <i class="fa fa-times"></i>
+                  <i class="fa fa-exclamation-circle" aria-hidden="true"></i>       
+                  <p>All fields are required</p> 
+            </div>
+      
+      </div>
+      <div class="my-modal">
+         
+            <form>
+                  <h3>Add Event <i class="fa fa-times"></i></h3>
+                  
+                  
+                  <input type="text" class="title-input">
+                  <label class="form-label">Event</label>
+                  <input type="text" placeholder=" Date..." class="datepicker">
+                  <input type="text" placeholder=" Time..." class="timepicker">
+                  
+            </form>
+            <p>Pick a color :</p>
+            <div class="color-container"> 
+                  <div class="blue"></div>
+                  <div class="red"></div>
+                  <div class="green"></div>
+                  <div class="purple"></div>
+            </div>
+            <button class="submit-btn">Save</button>
+            <button class="cancel-btn">Cancel</button>
+        
+            
+      </div>
+
+
+
+
+
+      <main id="main-container">
+            <section id="nav-container">
+                  <div class="year">
+                        <i class="fas fa-chevron-left"></i>
+                        <h3></h3>
+                        <i class="fas fa-chevron-right"></i>
+                  </div>
+                  <div class="months">
+                        <div>
+                              <p>January</p><span class="events-number"></span>
+                        </div>
+                        <div>
+                              <p>February</p><span class="events-number"></span>
+                        </div>
+                        <div>
+                              <p>March</p><span class="events-number"></span>
+                        </div>
+                        <div>
+                              <p>April</p><span class="events-number"></span>
+                        </div>
+                        <div>
+                              <p>May</p><span class="events-number"></span>
+                        </div>
+                        <div>
+                              <p>June</p><span class="events-number"></span>
+                        </div>
+                        <div>
+                              <p>July</p><span class="events-number"></span>
+                        </div>
+                        <div>
+                              <p>August</p><span class="events-number"></span>
+                        </div>
+                        <div>
+                              <p>September</p><span class="events-number"></span>
+                        </div>
+                        <div>
+                              <p>October</p><span class="events-number"></span>
+                        </div>
+                        <div>
+                              <p>November</p><span class="events-number"></span>
+                        </div>
+                        <div>
+                              <p>December</p><span class="events-number"></span>
+                        </div>
+                  </div>
+            </section>
+            <section id="calendar-container">
+                  <button id="plus-btn"><i class="fas fa-plus"></i></button>
+                  <div id="header">
+                        <h3 class="month-display">FEBRUARY</h3>
+                  </div>
+
+                  <div id="weekdays">
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                        <div>Sun</div>
+                  </div>
+
+                  <div id="calendar">
+                  </div>
+            </section>
+
+
+            <section class="events-container">
+
+                  <div id="events">
+                        <div id="toggle-events">
+                              <i class="fas fa-chevron-left "></i>
+                        </div>
+                        <div class="plans">
+                              <ul id="plans-list">
+                              </ul>
+                              <button id="remove-plans">Remove</button>
+                        </div>
+
+                  </div>
+
+
+            </section>
+
+      </main>
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script src="./main.js"></script>
+
+
+</body>
+
+</html>

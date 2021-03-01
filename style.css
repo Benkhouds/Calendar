@@ -1,0 +1,707 @@
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: linear-gradient(30deg,rgb(249, 252, 215),rgb(169, 241, 229), rgb(224, 204, 243));
+    background-repeat: no-repeat;
+    font-family:"Lato";
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width:1200px){
+ 
+    #calendar-container{
+        width: 80%  !important;
+    }
+    .events-container{
+        display: none;
+        width: 0;
+    }
+}
+
+/* @media (min-width:2000px){
+     #main-container{
+         height: 80% !important;
+         width: 80% !important;
+     }
+     #nav-container .year{
+        padding:4rem 0 !important;
+        width: 100% !important;
+     }
+     #nav-container .year>h3{
+        font-size: 1.7rem !important;
+     }
+     #nav-container .year>i{
+        font-size: 1.5rem !important;
+     }
+     #nav-container .months div{
+         height: 4rem;
+         padding: 2rem 2rem !important;
+         font-size: 1.5rem;
+         display: flex ; 
+         align-items: center;
+
+     }
+     #calendar-container #weekdays{
+         width: 100% !important;
+
+     }
+     #calendar-container #weekdays>div{
+         width: 15% !important;
+         font-size: 1.2rem  !important;
+
+     }
+     #calendar-container #calendar{
+         width: 100% !important;
+
+     }
+     #calendar-container #calendar>div{
+         width: 4.6rem !important;
+         margin: 2rem !important;
+     }
+     .events-container{
+
+     }
+     
+} */
+
+
+
+#main-container{
+   
+   width:max-content;
+   height: fit-content;
+   display: flex;
+   overflow: hidden;
+}
+
+#nav-container{
+ height: 100%;
+ width: max-content;
+ padding: 0;
+ background-color: #8773c1;
+ color: white;
+ box-shadow: 10px 0 20px  #b7b2c2ad;
+ z-index: 2;
+}
+#nav-container .year{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 12rem;
+    height: 4rem;
+    padding: 0.8rem 0.5rem 0.5rem;
+  
+}
+#nav-container .year>h3{
+    display: inline;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+#nav-container .year>h3::selection{
+  pointer-events: none;
+}
+#nav-container .year>i{
+    font-size: 1.2rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+#nav-container .year::selection{
+    pointer-events: none;
+}
+#nav-container .year>i:hover{
+    box-shadow: 0 0 5px white;
+}
+
+#nav-container .months div{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 1.5rem ;
+    cursor: pointer;
+    position: relative;
+    
+}
+
+#nav-container .months div::after{
+    content: "";
+    position: absolute;
+    display: block; 
+    width: 0;
+    left: 50%;
+    bottom: 0;
+    transition: all 0.25s ease-in;
+    z-index: -2;
+    
+}
+
+
+#nav-container .months div:hover::after{
+     background-image: linear-gradient(120deg, #a6f8c4 0%, #8fd3f4 100%);
+     background-repeat: no-repeat;
+     width: 100%;
+     left: 0;
+     height: 46px;
+     
+}
+#nav-container .months div span{
+    pointer-events: none;
+}
+#nav-container .months div p{
+    pointer-events: none;
+}
+
+#nav-container .months .active{
+  
+   background-color: #614d9c;
+   box-shadow: 0 0 30px #272138b2 inset;
+}
+#nav-container .months .active:hover{
+    background-color: white;
+    box-shadow: none;
+    color:black;
+ }
+
+#calendar-container{
+   z-index: 1;
+   padding: 2.5rem 2.5rem 0;
+   width: 60%;
+   background-color: #fbfbfb;
+   position: relative;
+   color: #a0a0a0;
+}
+#plus-btn{ 
+    position: absolute;
+    top: 0.3px;
+    right: 0;
+    padding: 0.8rem 1.3rem;
+    background-color:#8773c1 ;
+    border: solid 2px #8773c1;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+    transition: color 0.4s ease;
+}
+#plus-btn>i{
+  pointer-events: none;
+
+
+}
+#plus-btn:hover{
+    background-color:#fbfbfb ;
+    border: solid 2px #8773c1;
+    color: #8773c1 ;
+}
+#calendar-container #header{
+    margin: 0 0  2.5rem 0 ;
+    width:100% ;
+    text-align: center;
+
+}
+#header>h3{
+    font-size: 1.6rem;
+}
+#calendar-container #weekdays{
+    display: flex;
+    width: 630px;
+    height: fit-content;
+
+}
+#calendar-container #weekdays>div{
+  display: inline-block;
+  text-align: center;
+  width: 90px;
+ 
+}
+#calendar-container #calendar{
+    font-family: "abel";
+    display: flex;
+    flex-wrap: wrap;
+    width: 630px;
+    height: fit-content;
+
+}
+#calendar-container #calendar>div{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 46px;
+   height: 46px;
+   border-radius: 50%;
+   margin: 20px 22px 10px;
+   cursor: pointer;
+}
+
+#calendar-container #calendar>div:hover{
+   color: white;
+   background-color: rgb(218, 192, 243) ;
+}
+#calendar-container #calendar .otherday{
+   color:#e6e3e3;
+
+}
+#calendar-container #calendar .otherday:hover{
+   background-color:#bba9c5;
+
+}
+
+
+ .events-container{
+    transform: translateX(-100%);
+    position: relative;
+    min-width: 20rem;
+    max-width: 30rem;
+    background-color: whitesmoke;
+    animation: moving 1s ease forwards; 
+
+} 
+
+@keyframes moving{
+    to{
+        transform: translateX(0);
+    }
+}
+.toggled{
+    animation: move 1s ease forwards ;
+    
+}
+@keyframes move{
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+.closed{
+    transform: translateX(100%);
+    transition: transform 1.5s ease;
+}
+#events{
+   width: 100%;
+   height: 100%;
+   position: relative ;
+   
+}
+
+#events #toggle-events{
+    position: absolute ;
+    top: 0;
+    right: 0;
+    padding: 0.65rem 1.3rem;
+    border: none;
+    background-color:#8773c1 ;
+    font-size: 1.5rem;
+    color: white;
+    transition: transform 0.5s ease forwards;
+}
+.rotate{
+    transform: rotate(180deg);
+}
+.plans{
+    height: 93%;
+    overflow: hidden;
+}
+#remove-plans{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0.8rem 1.3rem;
+    border: none;
+    background-color:#8773c1 ;
+    font-size: 1rem;
+    color: white;
+}
+
+#plans-list{
+   width:100%;
+   height: 95%;
+   margin-top: 13%;
+   padding: 3rem 0 0.5rem 1rem;  
+   list-style: none;
+   overflow-y: scroll ;
+   
+}
+#plans-list .event{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0 1.5rem 2rem;
+    border-bottom:solid 1px rgba(182, 182, 182, 0.253) ;
+    border-left: solid 1px rgba(128, 128, 128, 0.582);
+    position: relative;
+}
+#plans-list .event>span{
+    position:absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: rgb(250, 116, 116);
+    bottom: 45%;
+    left: -0.45rem;
+  
+}
+#plans-list .event .date{
+    color: rgba(128, 128, 128, 0.596);
+}
+#plans-list .event .description{
+    display: grid;
+    grid-template-areas: "text button";
+    grid-auto-columns: auto;
+    grid-template-columns: 210px 30px;
+    
+}
+#plans-list .event span{
+    margin-top: 0.5rem;
+    text-align: left;
+    grid-area: text;
+}
+#plans-list .event .trash-btn{
+   grid-area:button;
+   
+   border: none;
+   height: 1.3rem;
+   margin-right: 0.5rem;
+   margin-top: 0.5rem;
+   align-self: initial;
+   background-color: whitesmoke;
+   cursor: pointer;
+}
+
+#plans-list .event .trash-btn>i{
+    pointer-events: none;
+    color: rgb(134, 74, 202);
+    
+    
+}
+/* rgba(0, 0, 0, 0.322): background color when fields are empty*/
+/*  popup modal  */
+.warning{
+    background-color: rgba(165, 97, 97, 0.534) ;
+}
+.modal-background {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    content:"";
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    backdrop-filter:blur(1px) contrast(0.6) ;
+    transition: visibility 0.3s,opacity 0.3s;   
+  }
+  .my-modal{
+    visibility: hidden;
+    opacity: 0;
+    width: 35rem;
+    height: 28rem;
+    padding: 0.8rem 3rem 1rem 3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    border-radius: 5px;
+    background-color: white;
+    transform: translate(-50%,-50%);
+    transition: visibility 0.5s,opacity 0.5s;  
+  }
+  
+  .my-modal h3 i{
+    color: #9f5ac7;
+    float: right;
+    margin:0 0.2rem 0 0;
+    cursor: pointer;
+  }
+  .my-modal form{
+    z-index: 25;
+    display: flex;
+    flex-direction: column;
+  
+  }
+ 
+  .my-modal form>h3{
+      font-size: 1.3rem ;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      color: #9f5ac7; 
+      text-decoration: underline;
+    }
+    .my-modal form .form-label{
+       font-size: 0.9rem;
+       font-weight: 500;
+       position: absolute;
+       top: 5rem;
+       display: block;
+       transition: 0.2s;
+       font-size: 1rem;
+       color:rgba(170, 170, 170, 0.582);
+    }
+  
+  .my-modal form .title-input{
+    margin: 1rem 0 1.2rem !important  ;
+    border-radius:5px;
+    height: 1.6rem !important;
+    background: transparent !important;
+   transition: border-color 0.2s  !important;
+  }
+  .my-modal form .title-input:focus + .form-label{
+ 
+      color: #703c80 !important;
+  }
+
+  .my-modal form .title-input:focus{
+      border-color: #703c80 !important;
+      box-shadow:0 1px 0 0 #703c80 !important;
+  }
+  .my-modal p{
+      margin-top: 0.5rem;
+      color:rgba(170, 170, 170, 0.582);
+  }
+  .color-container{
+    box-shadow:  0 0 20px rgba(0, 0, 0, 0.233);
+    width: 52%;
+    height: 55px;
+    border-radius: 16px;
+    background: rgba(204, 204, 204, 0.205);
+    margin: 1rem 0;
+    
+  }
+  .red ,.blue ,.green, .purple{
+    position: absolute;
+    width :40px;
+    height: 40px;
+    border-radius: 8px;
+    margin-top: 7.5px;
+    z-index: 1;
+    cursor: pointer;
+    
+  }
+  .color-container .red{
+     background: rgb(247, 120, 120) !important;
+     margin-left: 65px;
+  }
+  .color-container .blue{
+     background: rgb(76, 195, 255) !important;
+     margin-left: 10px ;
+  }
+  .color-container .green{
+     background: rgb(179, 218, 83) !important;
+     margin-left:120px ;
+  }
+  .color-container .purple{
+     background-color:  rgb(212, 161, 233) !important;
+     margin-left: 175px;
+  }
+  .blue:hover ,.blue.active{
+    box-shadow: 0 0 0 5px rgba(0, 168, 255, .2);
+  }
+  .red:hover, .red.active{
+    box-shadow: 0 0 0 5px rgba(255, 96, 95, .2);
+  }
+  .green:hover,.green.active{
+    box-shadow: 0 0 0 5px rgba(150, 209, 0, .2);
+  }
+  .purple:hover,.purple.active{
+    box-shadow: 0 0 0 5px rgba(208, 102, 250, .2);
+  }
+
+  .submit-btn:hover{
+      background-color: rgba(172, 100, 206, 0.521);
+  }
+  .cancel-btn:hover{
+     background-color: rgba(248, 107, 138, 0.568);
+  }
+  .submit-btn:focus{
+      background-color: rgb(172, 100, 206);
+  }
+  .cancel-btn:focus{
+     background-color: rgb(248, 107, 137);
+  }
+
+  
+ .submit-btn,.cancel-btn{
+    position: absolute;
+    right: 0;
+    bottom: 1.3rem;
+    font-size:1.2rem ;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+ }
+  .submit-btn{
+      transform: translateX(-35%);
+      padding: .5rem 2rem;
+      background:rgb(172, 100, 206);
+  }
+  .cancel-btn{
+    right: 7.3rem;
+    transform: translateX(-30%);
+    padding: .5rem 1.5rem;
+    background:rgb(248, 107, 137);
+  }
+
+  /*overriding materialize pickers */ 
+  .modal{
+      width: 90% !important;
+      border-radius: 5px  !important;
+      padding-right: 1.5rem !important;
+      top: 7% !important;
+
+  }
+  .datepicker-modal{
+      min-width: 500px !important;
+  }
+  .datepicker-calendar{
+      padding-left: 1rem !important;
+      padding-top: 1rem !important;
+      
+
+  }
+  .datepicker-footer{
+      padding-bottom: 1rem !important;
+  }
+  .datepicker-day-button:focus {
+    background-color: rgba(110, 57, 145, 0.25) !important;
+    color: white !important;
+  
+   }
+   .month-prev:focus,.month-next:focus {
+    outline: none;
+    background-color: #c59edf;
+    padding: 0 0.5rem !important;
+}
+  .modal-overlay{
+      top:50% !important;
+      left: 50% !important ;
+      transform: translate(-50%,-50%)!important;
+      width: 99.9vw !important;
+      height: 99.7vh !important;
+  }
+  .datepicker::placeholder,.timepicker::placeholder{
+      color: rgba(170, 170, 170, 0.582);
+      font-size: 0.9rem;
+    
+  }
+  .datepicker:focus,.timepicker:focus{
+    border-color: #703c80 !important;
+    box-shadow:0 1px 0 0 #703c80 !important;
+  }
+  .timepicker{
+      margin: 0.5rem 0 !important;
+  }
+  .datepicker-date-display{
+     background-color: #8773c1 !important;
+
+  }
+  .confirmation-btns>.btn-flat{
+     color: #8773c1;
+     font-weight: bold !important;
+
+  }
+  .datepicker-table td.is-selected{
+      background-color: #8773c1 !important;
+  }
+  .datepicker-table td.is-today{
+      color:#614d9c !important  ;
+     
+  }
+
+  .dropdown-content li>a, .dropdown-content li>span{
+    color: #8773c1 !important;
+  }
+  .timepicker-digital-display{
+    background-color: #8773c1 !important;
+  }
+
+  .modal .timepicker-modal .open{
+      color: #614d9c !important;
+  }
+
+  .timepicker-canvas line{
+      stroke:#8773c1  !important;
+  }
+
+  .timepicker-canvas-bg{
+      fill: #8773c1 !important;
+  }
+
+  .timepicker-canvas-bearing{
+      fill: #8773c1 !important;
+  }
+
+  .timepicker-tick.active, .timepicker-tick:hover {
+    background-color: rgba(153, 90, 177, 0.25) !important;
+}
+
+
+.alert-warning{
+    position: absolute;
+    top:21%;
+    right: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 34.8rem;
+    background-color: rgb(252, 106, 138);
+    border-left: 0.5rem solid rgb(180, 61, 87);
+    border-radius: 5px;
+    animation: showup 1s ease forwards;
+}
+
+.alert-warning .fa-times{
+    position: absolute;
+    right: 1rem;
+    color: white;
+    cursor: pointer ;
+}
+.alert-warning>p{
+    margin: 0;
+    color:white;
+    pointer-events: none;
+}
+@keyframes showup{
+   
+    0%{
+        transform: translate(50%,0);
+        
+    }
+    20%{
+       transform: translate(51%,-120%);
+       
+    }
+    40%{
+        transform: translate(50%,-100%);
+    }
+    60%{
+        transform: translate(49.5%,-120%);
+    }
+    80%{
+        transform: translateY(50.5%,-100%);
+    }
+    100%{
+        transform: translate(50%,-100%);
+    }
+
+
+} 
+
+.alert-warning .fa-exclamation-circle{
+    color: white;
+    position: absolute;
+    left: 1.3rem;
+    top: 1rem;
+    font-size: 1.2rem;
+}
